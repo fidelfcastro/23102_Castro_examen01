@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
                 for(Customers c : customerArray ) {
                     turn = c.getOperationNumber();
+                    turn--;
                 }
-
 
                 startActivityForResult(intent,RETURN_CODE);
 
