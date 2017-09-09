@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
      ArrayList<Customers> customerArray = new ArrayList<Customers>();
     ArrayList<Customers> newCustomerArray = new ArrayList<Customers>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +55,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        oBankAdapter = new BancAdapter(this);
+
+
+
         addCustomer_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                turn++;
+                listview.setAdapter(oBankAdapter);
                 String customer = txt_customerName.getText().toString();
                 Integer operation = Integer.parseInt(txt_operations.getText().toString());
 
@@ -67,23 +72,19 @@ public class MainActivity extends AppCompatActivity {
                 customerArray.add(customers);
                 putCustomers(customerArray);
 
+
             }
         });
 
         calculateQueue_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Integer turn;
                 Intent intent = new Intent(getApplicationContext(), BankActivity.class);
                 String customer = txt_customerName.getText().toString();
                 Integer operation = Integer.parseInt(txt_operations.getText().toString());
 
                 intent.putExtra("Array", customerArray);
                 startActivity(intent);
-
-                for(Customers c : customerArray ) {
-                    turn = c.getOperationNumber();
-                }
 
 
                 startActivityForResult(intent,RETURN_CODE);
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
     private void putCustomers(ArrayList<Customers> lCustomer) {
             oBankAdapter.clear();
