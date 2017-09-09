@@ -9,8 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -21,6 +23,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     public final static String MICONSTANTE="message";
     public final static int RETURN_CODE = 1;
+    BancAdapter oBankAdapter;
+    Integer turn;
 
      ArrayList<Customers> customerArray = new ArrayList<Customers>();
     ArrayList<Customers> newCustomerArray = new ArrayList<Customers>();
@@ -38,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText txt_customerName = (EditText) findViewById(R.id.customerName_text);
         final EditText txt_operations = (EditText) findViewById(R.id.operationNumber_Text);
 
+        final ListView listview = (ListView) findViewById(R.id.listView);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         addCustomer_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                turn++;
                 String customer = txt_customerName.getText().toString();
                 Integer operation = Integer.parseInt(txt_operations.getText().toString());
 
@@ -59,21 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         customer,operation
                 );
                 customerArray.add(customers);
-
-                for(int i=0;i<customerArray.size();i++)
-                {
-                    TableLayout customersTableLayout = (TableLayout) findViewById(R.id.customerTableLayout);
-                    TableRow row=new TableRow(MainActivity.this);
-                    Customers name = customerArray.get(i);
-                    Customers countOperation = customerArray.get(i);
-                    TextView tvDebt=new TextView(MainActivity.this);
-                    tvDebt.setText(""+name);
-                    TextView tvFee=new TextView(MainActivity.this);
-                    tvFee.setText(""+countOperation);
-                    row.addView(tvDebt);
-                    row.addView(tvFee);
-                    customersTableLayout.addView(row);
-                }
+                putCustomers(customerArray);
 
             }
         });
@@ -90,8 +82,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 for(Customers c : customerArray ) {
-                    
+                    turn = c.getOperationNumber();
                 }
+
 
                 startActivityForResult(intent,RETURN_CODE);
 
@@ -123,4 +116,13 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void putCustomers(ArrayList<Customers> lCustomer) {
+            oBankAdapter.clear();
+        for(Customers oCustomer:lCustomer) {
+            oBankAdapter.add(oCustomer);
+
+        }
+    }
+
 }

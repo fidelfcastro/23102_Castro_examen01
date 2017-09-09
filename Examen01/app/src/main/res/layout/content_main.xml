@@ -67,33 +67,6 @@
         android:layout_alignBottom="@+id/operationsTxtView"
         android:layout_alignParentEnd="true" />
 
-    <TableLayout
-        android:id="@+id/customerTableLayout"
-        android:layout_width="336dp"
-        android:layout_height="209dp"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="200dp"
-        android:layout_below="@+id/addCustomerBtn"
-        android:layout_alignStart="@+id/calculateQueue_btn"
-        android:layout_marginTop="13dp"
-        android:layout_alignEnd="@+id/calculateQueue_btn">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
 
     <Button
         android:id="@+id/calculateQueue_btn"
@@ -102,8 +75,19 @@
         android:text="CALCULATE QUEUE"
         tools:layout_editor_absoluteX="24dp"
         tools:layout_editor_absoluteY="423dp"
-        android:layout_below="@+id/customerTableLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp" />
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/listView"
+        android:layout_centerHorizontal="true" />
+
+    <ListView
+        android:layout_width="336dp"
+        android:layout_height="209dp"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="200dp"
+        android:layout_below="@+id/addCustomerBtn"
+        android:layout_alignStart="@+id/calculateQueue_btn"
+        android:layout_marginTop="13dp"
+        android:layout_alignEnd="@+id/calculateQueue_btn"
+        android:id="@+id/listView" />
 
 </RelativeLayout>
