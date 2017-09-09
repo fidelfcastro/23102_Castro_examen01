@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.androidapp.fidel.examen01.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
+        android:id="@+id/customerTxtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Customer"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="31dp"
+        android:layout_alignBaseline="@+id/customerName_text"
+        android:layout_alignBottom="@+id/customerName_text"
+        android:layout_alignStart="@+id/operationsTxtView" />
+
+    <TextView
+        android:id="@+id/operationsTxtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Operations"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="95dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@+id/customerName_text"
+        android:layout_alignStart="@+id/addCustomerBtn"
+        android:layout_marginTop="37dp" />
+
+    <Button
+        android:id="@+id/addCustomerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD CUSTOMER"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="142dp"
+        android:layout_below="@+id/operationNumber_Text"
+        android:layout_alignStart="@+id/customerTableLayout"
+        android:layout_marginTop="13dp" />
+
+    <EditText
+        android:id="@+id/customerName_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/operationNumber_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="80dp"
+        android:layout_alignBaseline="@+id/operationsTxtView"
+        android:layout_alignBottom="@+id/operationsTxtView"
+        android:layout_alignParentEnd="true" />
+
+    <TableLayout
+        android:id="@+id/customerTableLayout"
+        android:layout_width="336dp"
+        android:layout_height="209dp"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="200dp"
+        android:layout_below="@+id/addCustomerBtn"
+        android:layout_alignStart="@+id/calculateQueue_btn"
+        android:layout_marginTop="13dp"
+        android:layout_alignEnd="@+id/calculateQueue_btn">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+    <Button
+        android:id="@+id/calculateQueue_btn"
+        android:layout_width="336dp"
+        android:layout_height="48dp"
+        android:text="CALCULATE QUEUE"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="423dp"
+        android:layout_below="@+id/customerTableLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp" />
+
+</RelativeLayout>
