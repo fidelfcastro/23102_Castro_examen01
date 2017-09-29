@@ -27,20 +27,19 @@ package com.androidapp.fidel.examen01;
 
 public class BancAdapter extends ArrayAdapter<Customers> {
     public BancAdapter(Context context){
-        super(context,R.layout.customers_layout,R.id.customerName_text);
+        super(context,R.layout.customers_layout,R.id.txtCustomerName);
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         View objectView=super.getView(position,convertView,parent);
-
-        TextView txtCustomerName=(TextView) objectView.findViewById(R.id.customerName_text);
-        TextView txtOperations=(TextView) objectView.findViewById(R.id.operationNumber_Text);
+        TextView txtCustomerName=(TextView) objectView.findViewById(R.id.txtCustomerName);
+        TextView txtOperations=(TextView) objectView.findViewById(R.id.txtOperationNumber);
 
 
         Customers objectCustomer = this.getItem(position);
-        txtCustomerName.setText(objectCustomer.getCustomerName());
+        txtCustomerName.setText((position+1) + ": " + objectCustomer.getCustomerName()+" - ");
         txtOperations.setText(String.valueOf(objectCustomer.getOperationNumber()));
 
 

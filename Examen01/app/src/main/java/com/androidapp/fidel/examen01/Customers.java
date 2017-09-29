@@ -12,6 +12,11 @@ public class Customers implements Parcelable {
     private String customerName;
     private Integer operationNumber;
 
+    public Customers()
+    {
+
+    }
+
     public Customers(String customerName, Integer operationNumber) {
         this.customerName = customerName;
         this.operationNumber = operationNumber;

@@ -18,6 +18,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidapp.fidel.examen01.Utils.CustomerHelper;
+import com.androidapp.fidel.examen01.Utils.DBUtils;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     BancAdapter oBankAdapter;
     Integer turn;
 
-     ArrayList<Customers> customerArray = new ArrayList<Customers>();
+    ArrayList<Customers> customerArray = new ArrayList<Customers>();
     ArrayList<Customers> newCustomerArray = new ArrayList<Customers>();
 
 
@@ -43,34 +46,31 @@ public class MainActivity extends AppCompatActivity {
         final EditText txt_customerName = (EditText) findViewById(R.id.customerName_text);
         final EditText txt_operations = (EditText) findViewById(R.id.operationNumber_Text);
 
-        final ListView listview = (ListView) findViewById(R.id.listView);
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Actions", null).show();
-            }
-        });
-
+        ListView listview = (ListView) findViewById(R.id.listView);
         oBankAdapter = new BancAdapter(this);
+        listview.setAdapter(oBankAdapter);
 
-
+        final CustomerHelper cHelper = new CustomerHelper(getApplicationContext());
+        cHelper.open();
+        customerArray = cHelper.getAllCustomers();
+        cHelper.close();
+        oBankAdapter.addAll(customerArray);
 
         addCustomer_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listview.setAdapter(oBankAdapter);
+
                 String customer = txt_customerName.getText().toString();
                 Integer operation = Integer.parseInt(txt_operations.getText().toString());
-
                 Customers customers = new Customers(
                         customer,operation
                 );
                 customerArray.add(customers);
-                putCustomers(customerArray);
+                oBankAdapter.add(customers);
+                oBankAdapter.notifyDataSetChanged();
+                cHelper.open();
+                cHelper.addCutomer(customer, operation, 0);
+                cHelper.close();
 
 
             }
@@ -80,20 +80,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BankActivity.class);
-                String customer = txt_customerName.getText().toString();
-                Integer operation = Integer.parseInt(txt_operations.getText().toString());
 
                 intent.putExtra("Array", customerArray);
                 startActivity(intent);
 
 
-                startActivityForResult(intent,RETURN_CODE);
-
-
             }
         });
-
-
     }
 
     @Override
@@ -121,10 +114,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void putCustomers(ArrayList<Customers> lCustomer) {
             oBankAdapter.clear();
+
         for(Customers oCustomer:lCustomer) {
             oBankAdapter.add(oCustomer);
 
         }
+
+            oBankAdapter.notifyDataSetChanged();
     }
 
 }

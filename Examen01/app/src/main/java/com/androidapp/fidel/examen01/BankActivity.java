@@ -17,6 +17,7 @@ public class BankActivity extends AppCompatActivity {
     ListView objectListView;
     ArrayList<Customers> customerArray;
     String nameDelete;
+    int operation;
 
 
     @Override
@@ -29,32 +30,43 @@ public class BankActivity extends AppCompatActivity {
         objectListView.setAdapter(objectBankAdapter);
 
         customerArray = this.getIntent().getParcelableArrayListExtra("Array");
-        fillDatabase(customerArray);
+        generateQueue(customerArray);
 
     }
 
 
     @Override
     public void onBackPressed() {
-        back();
-    }
-
-    public void back(){
-        Intent oIntent = new Intent();
-        oIntent.putExtra("returnResult",customerArray);
-        setResult(MainActivity.RESULT_OK,oIntent);
         finish();
     }
 
-    private void fillDatabase(ArrayList<Customers> lCustomer) {
+    private void generateQueue(ArrayList<Customers> lCustomer) {
         objectBankAdapter.clear();
 
-        for(Customers oCustomer:lCustomer) {
-            objectBankAdapter.add(oCustomer);
+        for(Customers cust : lCustomer){
+            operation += cust.getOperationNumber()*lCustomer.size();
+        }
 
+        while(operation>=0) {
+            for (Customers oCustomer : lCustomer) {
+                if (oCustomer.getOperationNumber() > 0) {
+                    int currentOperation = oCustomer.getOperationNumber();
+                    oCustomer.setOperationNumber(currentOperation - 1);
+                    objectBankAdapter.add(new Customers(oCustomer.getCustomerName(), oCustomer.getOperationNumber()+1));
+                }
+
+
+                operation--;
+            }
         }
 
         objectBankAdapter.notifyDataSetChanged();
+
+
+
+
+
+
     }
 
 }
