@@ -37,7 +37,7 @@ public class CustomerHelper {
         dbHelper.close();
     }
 
-    public Customers addCutomer(String name, int operations, int position) {
+    public Customers addCustomer(String name, int operations, int position) {
         ContentValues values = new ContentValues();
         values.put(DBUtils.CUSTOMER_NAME,name);
         values.put(DBUtils.CUSTOMER_OPERATIONS,operations);
@@ -54,8 +54,8 @@ public class CustomerHelper {
         return oCustomer;
     }
 
-    public int deleteCustomer(int nCustomerID){
-        return database.delete(DBUtils.CUSTOMER_TABLE_NAME,DBUtils.CUSTOMER_ID + " = " + nCustomerID, null);
+    public int deleteCustomer(String customerName){
+        return database.delete(DBUtils.CUSTOMER_TABLE_NAME, DBUtils.CUSTOMER_NAME + " = '" + customerName + "'", null);
     }
 
     public ArrayList<Customers> getAllCustomers() {

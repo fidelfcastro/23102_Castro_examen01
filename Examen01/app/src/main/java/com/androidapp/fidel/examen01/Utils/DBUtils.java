@@ -26,7 +26,7 @@ public class DBUtils extends SQLiteOpenHelper {
             CUSTOMER_NAME +
             " text NOT NULL," +
             CUSTOMER_OPERATIONS +
-            " integer NOT NULL," +
+            " integer NOT NULL" +
             CUSTOMER_POSITION  +
             " integer NOT NULL" +
             ")";

@@ -42,9 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
         Button addCustomer_click = (Button) findViewById(R.id.addCustomerBtn);
         Button calculateQueue_click = (Button) findViewById(R.id.calculateQueue_btn);
+        Button delete_click = (Button) findViewById(R.id.btn_delete);
 
         final EditText txt_customerName = (EditText) findViewById(R.id.customerName_text);
         final EditText txt_operations = (EditText) findViewById(R.id.operationNumber_Text);
+        final EditText txt_deleteName = (EditText) findViewById(R.id.deleteText);
 
         ListView listview = (ListView) findViewById(R.id.listView);
         oBankAdapter = new BancAdapter(this);
@@ -69,20 +71,42 @@ public class MainActivity extends AppCompatActivity {
                 oBankAdapter.add(customers);
                 oBankAdapter.notifyDataSetChanged();
                 cHelper.open();
-                cHelper.addCutomer(customer, operation, 0);
+                cHelper.addCustomer(customer, operation, 0);
                 cHelper.close();
 
 
             }
         });
 
+        delete_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String customerDelete = txt_deleteName.getText().toString();
+
+                cHelper.open();
+                int n = cHelper.deleteCustomer(customerDelete);
+                cHelper.close();
+                for (int i = 0; i < customerArray.size(); i++) {
+                    if (customerArray.get(i).getCustomerName().equals(customerDelete)) {
+                        oBankAdapter.remove(customerArray.remove(i));
+                        oBankAdapter.notifyDataSetChanged();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Name " + customerDelete+ " does not exist in Queue" , Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
+
         calculateQueue_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BankActivity.class);
+                if (customerArray.size() > 0) {
+                    Intent intent = new Intent(getApplicationContext(), BankActivity.class);
 
-                intent.putExtra("Array", customerArray);
-                startActivity(intent);
+                    intent.putExtra("Array", customerArray);
+                    startActivity(intent);
+                }
 
 
             }

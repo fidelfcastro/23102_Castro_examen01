@@ -90,4 +90,22 @@
         android:layout_alignEnd="@+id/calculateQueue_btn"
         android:id="@+id/listView" />
 
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE"
+        android:layout_above="@+id/listView"
+        android:layout_toStartOf="@+id/deleteText" />
+
+    <EditText
+        android:id="@+id/deleteText"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_delete"
+        android:layout_alignBottom="@+id/btn_delete"
+        android:layout_alignParentEnd="true"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
 </RelativeLayout>
