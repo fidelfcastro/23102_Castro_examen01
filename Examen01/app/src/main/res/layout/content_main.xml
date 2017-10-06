@@ -12,13 +12,25 @@
         android:id="@+id/customerTxtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Customer"
+        android:layout_alignBaseline="@+id/date_txtview"
+        android:layout_alignBottom="@+id/date_txtview"
+        android:layout_alignStart="@+id/operationsTxtView"
+        android:text="DATE"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="31dp"
-        android:layout_alignBaseline="@+id/customerName_text"
-        android:layout_alignBottom="@+id/customerName_text"
-        android:layout_alignStart="@+id/operationsTxtView" />
+        tools:layout_editor_absoluteY="31dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/clientCode_text"
+        android:layout_alignBottom="@+id/clientCode_text"
+        android:layout_alignStart="@+id/customerTxtView"
+        android:text="CODE/NAME"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="31dp" />
 
     <TextView
         android:id="@+id/operationsTxtView"
@@ -28,10 +40,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="95dp"
-        android:layout_marginStart="20dp"
-        android:layout_below="@+id/customerName_text"
-        android:layout_alignStart="@+id/addCustomerBtn"
-        android:layout_marginTop="37dp" />
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/clientCode_text"
+        android:layout_alignStart="@+id/listView" />
 
     <Button
         android:id="@+id/addCustomerBtn"
@@ -46,14 +57,27 @@
 
     <EditText
         android:id="@+id/customerName_text"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/date_txtview"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/clientCode_text"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="114dp"
         tools:layout_editor_absoluteY="16dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignBaseline="@+id/customerName_text"
+        android:layout_alignBottom="@+id/customerName_text"
+        android:layout_alignStart="@+id/date_txtview" />
 
     <EditText
         android:id="@+id/operationNumber_Text"
@@ -107,5 +131,15 @@
         android:layout_alignParentEnd="true"
         android:ems="10"
         android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/date_txtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>

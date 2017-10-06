@@ -18,6 +18,16 @@ public class DBUtils extends SQLiteOpenHelper {
     public static final String CUSTOMER_OPERATIONS = "_operations";
     public static final String CUSTOMER_POSITION = "_position";
 
+    public static final String TRANSACTION_TABLE_NAME = "TRANSACTION";
+    public static final String TRANSACTION_ID = "transaction_id";
+    public static final String CUSTOMER_FOREIGNID = "_id";
+
+    public static final String VISIT_ID = "transaction_id";
+    public static final String DATE = "_date";
+
+
+
+
     public static final String DATABASE_CREATE = "CREATE TABLE "+
             CUSTOMER_TABLE_NAME +
             "(" +
